@@ -1,11 +1,12 @@
 const { Router } = require("express"); // just import the Router object
 const Product = require("../models").product;
+const Category = require("../models").category;
 
 const router = Router();
 
-router.get("/all", async (req, res, next) => {
+router.get("/products", async (req, res, next) => {
   try {
-    res.send(await product.findAll({ include: [category] }));
+    res.send(await Product.findAll({ include: [Category] }));
   } catch (error) {
     console.log(error);
     next(error);
@@ -13,9 +14,9 @@ router.get("/all", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/products/:id", async (req, res, next) => {
   try {
-    res.send(await product.findOne(req.params.id, { include: [category] }));
+    res.send(await Product.findOne(req.body.id, { include: [Category] }));
   } catch (error) {
     console.log(error);
     next(error);
