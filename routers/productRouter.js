@@ -16,7 +16,7 @@ router.get("/products", async (req, res, next) => {
 
 router.get("/products/:id", async (req, res, next) => {
   try {
-    res.send(await Product.findOne(req.body.id, { include: [Category] }));
+    res.send(await Product.findByPk(req.body.id, { include: [Category] }));
   } catch (error) {
     console.log(error);
     next(error);
